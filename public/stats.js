@@ -21,7 +21,9 @@ function generatePalette() {
   return arr;
 }
 
+// Given the array of Workout objects, creates a dashboard with 4 charts
 function populateChart(data) {
+  // Do some data finessing
   let durations = data.map(({ totalDuration }) => totalDuration);
   let pounds = calculateTotalWeight(data);
   let workouts = workoutNames(data);

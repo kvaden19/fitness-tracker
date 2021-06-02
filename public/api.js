@@ -1,8 +1,11 @@
+// Defines four asynchronous functions
+
 const API = {
+  // From an internal API, GETS the last workout
   async getLastWorkout() {
     let res;
     try {
-      res = await fetch("/api/workouts");
+      res = await fetch("/api/workouts"); // TODO: Write this route
     } catch (err) {
       console.log(err)
     }
@@ -10,9 +13,13 @@ const API = {
 
     return json[json.length - 1];
   },
+
+  // From an internal API, PUTS (edits) the current exercise
   async addExercise(data) {
+    // Parses the ID from the current URL
     const id = location.search.split("=")[1];
 
+    // TODO: Write this route
     const res = await fetch("/api/workouts/" + id, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -23,7 +30,10 @@ const API = {
 
     return json;
   },
+
+  // From an internal API, POSTS (creates) a new workout
   async createWorkout(data = {}) {
+    // TODO: Write this route
     const res = await fetch("/api/workouts", {
       method: "POST",
       body: JSON.stringify(data),
@@ -35,7 +45,9 @@ const API = {
     return json;
   },
 
+  // From an internal API, GETS workouts within the desired date range
   async getWorkoutsInRange() {
+    // TODO: Write this route
     const res = await fetch(`/api/workouts/range`);
     const json = await res.json();
 

@@ -1,15 +1,19 @@
+// Initialize the landing page with a summary of the last workout (if applicable)
 async function initWorkout() {
+  // GET the last workout
   const lastWorkout = await API.getLastWorkout();
   console.log("Last workout:", lastWorkout);
+  // If there is a last workout, set the link to go to its exercise page
   if (lastWorkout) {
     document
       .querySelector("a[href='/exercise?']")
       .setAttribute("href", `/exercise?id=${lastWorkout._id}`);
-
+    // Create the WorkoutSummary object
     const workoutSummary = {
       date: formatDate(lastWorkout.day),
       totalDuration: lastWorkout.totalDuration,
       numExercises: lastWorkout.exercises.length,
+      // "spread" operator, sends unspecified number of arguments to tallyExercises
       ...tallyExercises(lastWorkout.exercises)
     };
 
@@ -19,7 +23,10 @@ async function initWorkout() {
   }
 }
 
+// Tallies total weight / sets / reps for resistance exercises and total distance for cardio exercises
 function tallyExercises(exercises) {
+  // Array.reduce() method applies a reducer function to each element of the array
+    // Reducer function by convention takes an ACCumulator and a CURRent value
   const tallied = exercises.reduce((acc, curr) => {
     if (curr.type === "resistance") {
       acc.totalWeight = (acc.totalWeight || 0) + curr.weight;
@@ -33,6 +40,7 @@ function tallyExercises(exercises) {
   return tallied;
 }
 
+// Formats the Workout object's day attribute into a Date object with desired formatting
 function formatDate(date) {
   const options = {
     weekday: "long",
@@ -44,6 +52,7 @@ function formatDate(date) {
   return new Date(date).toLocaleDateString(options);
 }
 
+// Renders the Workout summary for the last workout and dynamically appends to landing page div
 function renderWorkoutSummary(summary) {
   const container = document.querySelector(".workout-stats");
 
@@ -71,6 +80,7 @@ function renderWorkoutSummary(summary) {
   });
 }
 
+// Renders placeholder text and dynamically appends to landing page dive
 function renderNoWorkoutText() {
   const container = document.querySelector(".workout-stats");
   const p = document.createElement("p");
