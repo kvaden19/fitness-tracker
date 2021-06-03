@@ -1,14 +1,8 @@
 # fitness-tracker
 
 ## TODOs:
-- Create server.js
-- Create Mongo database
-- Create Mongoose schema
-    - Workout
-        - ID
-        - Date
-        - Exercise (array)
-            - See exercise.js line 106
+- Create Mongoose schema - see seed.js
+- Seed the database!
 - Routes
     - See api.js
     - From README:
