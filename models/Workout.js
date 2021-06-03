@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+// TODO: Could add some validations, defaults, etc
 const WorkoutSchema = new Schema({
-    // day - Date object
+    day: Date,
 
-    // exercises - Array of objects
+    exercises: Array
 });
 
 const Workout = mongoose.model("Workout", WorkoutSchema);
