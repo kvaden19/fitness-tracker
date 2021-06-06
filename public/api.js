@@ -5,13 +5,13 @@ const API = {
   async getLastWorkout() {
     let res;
     try {
-      res = await fetch("/api/workouts"); // TODO: Write this route
+      res = await fetch("/api/workouts");
     } catch (err) {
       console.log(err)
     }
     const json = await res.json();
 
-    return json[json.length - 1];
+    return json[json.length - 1]; // does this line parse out the most recent workout?
   },
 
   // From an internal API, PUTS (edits) the current exercise
@@ -19,7 +19,6 @@ const API = {
     // Parses the ID from the current URL
     const id = location.search.split("=")[1];
 
-    // TODO: Write this route
     const res = await fetch("/api/workouts/" + id, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -33,7 +32,6 @@ const API = {
 
   // From an internal API, POSTS (creates) a new workout
   async createWorkout(data = {}) {
-    // TODO: Write this route
     const res = await fetch("/api/workouts", {
       method: "POST",
       body: JSON.stringify(data),
