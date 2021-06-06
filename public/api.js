@@ -1,7 +1,7 @@
 // Defines four asynchronous functions
 
 const API = {
-  // From an internal API, GETS the last workout
+  // From an internal API, GETS the list of workouts
   async getLastWorkout() {
     let res;
     try {
@@ -11,7 +11,7 @@ const API = {
     }
     const json = await res.json();
 
-    return json[json.length - 1]; // does this line parse out the most recent workout?
+    return json[json.length - 1]; // This line parses out the lastest workout from the full array
   },
 
   // From an internal API, PUTS (edits) the current exercise

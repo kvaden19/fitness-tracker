@@ -11,7 +11,7 @@ async function initWorkout() {
     // Create the WorkoutSummary object
     const workoutSummary = {
       date: formatDate(lastWorkout.day),
-      totalDuration: lastWorkout.totalDuration,
+      // totalDuration: lastWorkout.totalDuration, // ISSUE - no attribute called totalDuration
       numExercises: lastWorkout.exercises.length,
       // "spread" operator, sends unspecified number of arguments to tallyExercises
       ...tallyExercises(lastWorkout.exercises)
@@ -28,6 +28,7 @@ function tallyExercises(exercises) {
   // Array.reduce() method applies a reducer function to each element of the array
     // Reducer function by convention takes an ACCumulator and a CURRent value
   const tallied = exercises.reduce((acc, curr) => {
+    acc.totalDuration = (acc.totalDuration || 0) + curr.duration; // Added this line
     if (curr.type === "resistance") {
       acc.totalWeight = (acc.totalWeight || 0) + curr.weight;
       acc.totalSets = (acc.totalSets || 0) + curr.sets;
