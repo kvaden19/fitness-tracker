@@ -18,14 +18,15 @@ router.put('/:id', (req, res) => {
 
 // createWorkout
 router.post('/', ({body}, res) => {
-    // db.Book.create(body)
-    // .then(({_id}) => db.Library.findOneAndUpdate({}, { $push: { books: _id } }, { new: true }))
-    // .then(dbLibrary => {
-    //     res.json(dbLibrary);
-    // })
-    // .catch(err => {
-    //     res.json(err);
-    // });
+    db.Workout.create(body)
+    // .then(({ _id }) => db.Workout.findOneAndUpdate({}, { $push: { notes: _id } }, { new: true }))
+    // What does this do?? Associate with another model?
+    .then(dbUser => {
+      res.json(dbUser);
+    })
+    .catch(err => {
+      res.json(err);
+    });
 });
 
 // getWorkoutsInRange
