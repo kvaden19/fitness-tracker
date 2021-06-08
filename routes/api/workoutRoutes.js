@@ -39,9 +39,9 @@ router.post('/', ({body}, res) => {
 router.get('/range', (req, res) => {
     let today = new Date();
     let sevenDaysAgo = new Date().setDate(new Date().getDate()-8);
-    db.Workout.aggregate([{
-        $addFields: { totalDuration: { $sum: "exercises.duration" }}
-    }]);
+    // db.Workout.aggregate([{
+    //     $addFields: { totalDuration: { $sum: "exercises.duration" }}
+    // }]);
     db.Workout.find({ day: { $gte: sevenDaysAgo, $lte: today } })
     .then(dbWorkout => {
         res.json(dbWorkout);
