@@ -45,7 +45,6 @@ const API = {
 
   // From an internal API, GETS workouts within the desired date range
   async getWorkoutsInRange() {
-    // TODO: Write this route
     const res = await fetch(`/api/workouts/range`);
     const json = await res.json();
 
